@@ -1,0 +1,7 @@
+CREATE OR REPLACE TABLE sales_delta USING DELTA AS
+SELECT * FROM read_files('/Volumes/database/default/db', format => 'csv', header => true);
+SELECT * FROM sales_delta;
+UPDATE sales_delta SET Sales_Amount = 500 WHERE Product_ID = 1075;
+SELECT * FROM sales_delta WHERE Product_ID = 1075;
+DELETE FROM sales_delta WHERE Product_ID = 1075;
+SELECT * FROM sales_delta WHERE Product_ID = 1075;
