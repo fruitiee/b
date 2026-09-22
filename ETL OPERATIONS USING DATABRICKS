@@ -1,0 +1,10 @@
+SELECT *FROM read_files("/Volumes/database/default/db");
+CREATE TABLE sales_data AS
+SELECT * FROM read_files( '/Volumes/database/default/db', format => 'csv', header => true);
+SELECT *FROM sales_data;
+SELECT COUNT(*) FROM sales_data;
+SELECT SUM(Sales_Amount) AS Total_Sales FROM sales_data;
+SELECT MAX(Sales_Amount) AS Highest_Sale, MIN(Sales_Amount) AS Lowest_Sale FROM sales_data;
+SELECT * FROM sales_data WHERE Sales_Amount > 500;
+SELECT Region, SUM(Sales_Amount) AS Total_Sales FROM sales_data GROUP BY Region ORDER BY Total_Sales DESC; 
+SELECT Product_ID, Quantity_Sold, Unit_Cost, Unit_Price, (Unit_Price - Unit_Cost) * Quantity_Sold AS Profit FROM sales_data;
